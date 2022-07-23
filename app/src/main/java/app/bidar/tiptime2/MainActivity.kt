@@ -1,17 +1,20 @@
 package app.bidar.tiptime2
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -52,11 +55,21 @@ fun TipTimeScreen() {
     }
 }
 
+//var amountInput = "0"
+//var amountInput = mutableStateOf("0")
+//var amountInput: MutableState<String> = mutableStateOf("0")
+
+
 @Composable
 fun EditNumberField() {
+    var amountInput by remember { mutableStateOf("") }
     TextField(
-        value = "",
-        onValueChange = {},
+        value = amountInput,
+        onValueChange = { amountInput = it },
+        label = { Text(stringResource(R.string.cost_of_service)) },
+        modifier = Modifier.fillMaxWidth(),
+        singleLine = true,
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
     )
 }
 
