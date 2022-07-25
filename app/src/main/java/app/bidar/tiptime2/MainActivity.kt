@@ -1,9 +1,9 @@
 package app.bidar.tiptime2
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.MaterialTheme
@@ -60,7 +60,7 @@ fun TipTimeScreen() {
         )
 
         Spacer(Modifier.height(16.dp))
-        EditNumberField(value = amountInput, onValueChange = {amountInput = it})
+        EditNumberField(value = amountInput, onValueChange = {amountInput = it}, label = R.string.bill_amount)
         Spacer(Modifier.height(24.dp))
 
         Text(
@@ -79,14 +79,16 @@ fun TipTimeScreen() {
 
 @Composable
 fun EditNumberField(
+    @StringRes label: Int,
     value: String,
-    onValueChange: (String) -> Unit
+    onValueChange: (String) -> Unit,
+    modifier: Modifier = Modifier
 ) {
 
     TextField(
         value = value,
         onValueChange = onValueChange,
-        label = { Text(stringResource(R.string.cost_of_service)) },
+        label = { Text(stringResource(label)) },
         modifier = Modifier.fillMaxWidth(),
         singleLine = true,
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
@@ -100,6 +102,7 @@ private fun calculateTip(
     val tip = tipPercent / 100 * amount
     return NumberFormat.getCurrencyInstance().format(tip)
 }
+
 
 
 
