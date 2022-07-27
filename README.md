@@ -4,4 +4,4 @@ TipTime is a sample Calculation of tip amount app, built with
 
 ## Screenshots
 
-<img src="screenshots/tiptime.png" alt="Screenshot">
+<img src="screenshots/tiptime.png" alt="Screenshot" width="200">
